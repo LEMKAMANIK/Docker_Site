@@ -1,0 +1,10 @@
+[
+ {"id":1,"name":"T-shirt coton bio","cat":"Hauts","price":29,"color":"Bleu nuit","bg":"#14213d","icon":"shirt","tag":"Nouveau"},
+ {"id":2,"name":"Chemise lin","cat":"Hauts","price":69,"color":"Sauge","bg":"#7a8f6b","icon":"shirt"},
+ {"id":3,"name":"Pull laine mérinos","cat":"Hauts","price":95,"color":"Brique","bg":"#a34a3a","icon":"shirt"},
+ {"id":4,"name":"Pantalon chino","cat":"Bas","price":79,"color":"Sable","bg":"#b9a98a","icon":"pants"},
+ {"id":5,"name":"Jean droit brut","cat":"Bas","price":89,"color":"Indigo","bg":"#2d4cff","icon":"pants","tag":"Best-seller"},
+ {"id":6,"name":"Short en lin","cat":"Bas","price":49,"color":"Gris pierre","bg":"#8a8f98","icon":"pants"},
+ {"id":7,"name":"Veste workwear","cat":"Vestes","price":139,"color":"Olive","bg":"#4d5a3c","icon":"coat"},
+ {"id":8,"name":"Manteau long","cat":"Vestes","price":189,"color":"Anthracite","bg":"#2b2f38","icon":"coat","tag":"-20 %"}
+]

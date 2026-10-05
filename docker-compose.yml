@@ -1,0 +1,42 @@
+services:
+  frontend:
+    build: ./frontend
+    container_name: boutique-frontend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: boutique-backend
+    environment:
+      DATABASE_URL: postgres://boutique:${POSTGRES_PASSWORD}@db:5432/boutique
+      JWT_SECRET: ${JWT_SECRET}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped   # pas de port publié : l'API passe par nginx (/api)
+
+  db:
+    image: postgres:16-alpine
+    container_name: boutique-db
+    environment:
+      POSTGRES_USER: boutique
+      POSTGRES_DB: boutique
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./backend/db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U boutique -d boutique"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  db_data:

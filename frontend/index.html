@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier Marée – Vêtements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="logo">Atelier Marée</div>
+  <nav>
+    <a href="#catalogue">Catalogue</a>
+    <button class="link" id="accBtn">Connexion</button>
+    <button class="link" id="logoutBtn" hidden>Déconnexion</button>
+    <button class="cartbtn" id="openCart" aria-label="Ouvrir le panier">Panier (<span id="count">0</span>)</button>
+  </nav>
+</header>
+<section class="hero">
+  <h1>Des vêtements faits pour durer.</h1>
+  <p>Coupes simples, matières naturelles, fabrication européenne. Version de démonstration : aucun paiement réel.</p>
+  <a href="#catalogue">Voir le catalogue</a>
+</section>
+<div class="toolbar">
+  <div class="filters" id="filters" role="group" aria-label="Filtrer par catégorie"></div>
+  <div class="tools">
+    <input type="search" id="search" placeholder="Rechercher un article" aria-label="Rechercher">
+    <select id="sort" aria-label="Trier">
+      <option value="">Trier par défaut</option>
+      <option value="asc">Prix croissant</option>
+      <option value="desc">Prix décroissant</option>
+      <option value="name">Nom A–Z</option>
+    </select>
+  </div>
+</div>
+<main class="grid" id="catalogue"></main>
+<footer>© 2026 Atelier Marée – Site de démonstration. Les produits sont fictifs.</footer>
+
+<div id="overlay"></div>
+<aside id="drawer" aria-label="Panier">
+  <h2>Votre panier <button id="closeCart" aria-label="Fermer le panier">×</button></h2>
+  <div class="ship" id="ship"></div>
+  <div id="items"></div>
+  <div class="sub"><span>Livraison</span><span id="shipcost">–</span></div>
+  <div class="total"><span>Total</span><span id="total">0,00 €</span></div>
+  <button class="pay" id="pay">Commander</button>
+</aside>
+<dialog id="authDlg" aria-labelledby="authTitle">
+  <div class="dhead"><h2 id="authTitle">Connexion</h2><button class="x" data-close aria-label="Fermer">×</button></div>
+  <p class="note" id="authNote"></p>
+  <div class="tabs"><button type="button" id="tabLogin" aria-pressed="true">Se connecter</button><button type="button" id="tabReg" aria-pressed="false">Créer un compte</button></div>
+  <form id="authForm">
+    <label id="nameRow" hidden>Nom<input id="aName" maxlength="100" autocomplete="name"></label>
+    <label>E-mail<input id="aEmail" type="email" required autocomplete="email"></label>
+    <label>Mot de passe (8 caractères minimum)<input id="aPass" type="password" required minlength="8" autocomplete="current-password"></label>
+    <p class="err" id="authErr" role="alert"></p>
+    <button class="pay" id="authSubmit">Se connecter</button>
+  </form>
+</dialog>
+<dialog id="coDlg" aria-labelledby="coTitle">
+  <div class="dhead"><h2 id="coTitle">Livraison</h2><button class="x" data-close aria-label="Fermer">×</button></div>
+  <form id="coForm">
+    <label>Nom complet<input id="cName" required maxlength="120" autocomplete="name"></label>
+    <label>Adresse<input id="cAddr" required maxlength="120" autocomplete="street-address"></label>
+    <div class="two"><label>Code postal<input id="cZip" required maxlength="20" autocomplete="postal-code"></label>
+    <label>Ville<input id="cCity" required maxlength="120" autocomplete="address-level2"></label></div>
+    <p class="note" id="coSum"></p>
+    <p class="err" id="coErr" role="alert"></p>
+    <button class="pay" id="coSubmit">Confirmer la commande</button>
+  </form>
+  <div id="coDone" hidden></div>
+</dialog>
+<dialog id="ordDlg" aria-labelledby="ordTitle">
+  <div class="dhead"><h2 id="ordTitle">Mes commandes</h2><button class="x" data-close aria-label="Fermer">×</button></div>
+  <div id="ordList"></div>
+  <div class="danger">
+    <button type="button" class="link" id="delBtn">Supprimer mon compte</button>
+    <form id="delForm" hidden>
+      <p class="note">Action définitive. Vos données personnelles sont effacées ; vos commandes passées sont conservées de façon anonyme. Entrez votre mot de passe pour confirmer.</p>
+      <label>Mot de passe<input id="dPass" type="password" required autocomplete="current-password"></label>
+      <p class="err" id="delErr" role="alert"></p>
+      <button class="pay danger-btn" id="delSubmit">Supprimer définitivement</button>
+    </form>
+  </div>
+</dialog>
+<div id="toast" role="status"></div>
+<script src="js/app.js"></script>
+</body>
+</html>
